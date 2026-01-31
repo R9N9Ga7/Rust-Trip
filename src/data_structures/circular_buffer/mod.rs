@@ -1,5 +1,5 @@
 #[allow(dead_code)]
-struct CircularBuffer<T, const N: usize> {
+pub struct CircularBuffer<T, const N: usize> {
     buffer: [Option<T>; N],
     write_index: usize,
     read_index: usize,
@@ -8,7 +8,7 @@ struct CircularBuffer<T, const N: usize> {
 
 #[allow(dead_code)]
 impl<T, const N: usize> CircularBuffer<T, N> {
-    fn new() -> Self {
+    pub fn new() -> Self {
         assert!(N > 0, "CircularBuffer must be > 0");
         Self {
             buffer: std::array::from_fn(|_| None),
@@ -18,7 +18,7 @@ impl<T, const N: usize> CircularBuffer<T, N> {
         }
     }
 
-    fn put(&mut self, value: T) -> bool {
+    pub fn put(&mut self, value: T) -> bool {
         if self.is_full() {
             return false;
         }
@@ -29,7 +29,7 @@ impl<T, const N: usize> CircularBuffer<T, N> {
         true
     }
 
-    fn get(&mut self) -> Option<T> {
+    pub fn get(&mut self) -> Option<T> {
         if self.is_empty() {
             return None;
         }
@@ -40,10 +40,10 @@ impl<T, const N: usize> CircularBuffer<T, N> {
         value
     }
 
-    fn is_empty(&self) -> bool { self.count == 0 }
-    fn is_full(&self) -> bool { self.count == N }
-    fn capacity(&self) -> usize { self.count }
-    fn len(&self) -> usize { N }
+    pub fn is_empty(&self) -> bool { self.count == 0 }
+    pub fn is_full(&self) -> bool { self.count == N }
+    pub fn capacity(&self) -> usize { self.count }
+    pub fn len(&self) -> usize { N }
 }
 
 #[cfg(test)]

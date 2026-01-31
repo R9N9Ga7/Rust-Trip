@@ -1,31 +1,31 @@
 #[allow(dead_code)]
-struct Stack<T> {
+pub struct Stack<T> {
     arr: Vec<T>,
 }
 
 #[allow(dead_code)]
 impl<T> Stack<T> {
-    fn new() -> Self {
+    pub fn new() -> Self {
         return Self { arr: Vec::new() };
     }
 
-    fn push(&mut self, value: T) {
+    pub fn push(&mut self, value: T) {
         self.arr.push(value);
     }
 
-    fn pop(&mut self) -> Option<T> {
+    pub fn pop(&mut self) -> Option<T> {
         return self.arr.pop();
     }
 
-    fn top(&self) -> Option<&T> {
+    pub fn top(&self) -> Option<&T> {
         return self.arr.last();
     }
 
-    fn is_empty(&self) -> bool {
+    pub fn is_empty(&self) -> bool {
         return self.arr.is_empty();
     }
 
-    fn size(&self) -> usize {
+    pub fn size(&self) -> usize {
         return self.arr.len();
     }
 }
